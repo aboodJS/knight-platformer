@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dctt3wx8baepd"]
+
+[ext_resource type="PackedScene" uid="uid://c1s76eg23sddo" path="res://scenes/level_one.tscn" id="1_s0kic"]
+
+[node name="game" type="Node2D"]
+
+[node name="level one" parent="." instance=ExtResource("1_s0kic")]
+unique_name_in_owner = true

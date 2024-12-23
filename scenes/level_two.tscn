@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=4 uid="uid://c456kae7j0hca"]
+
+[ext_resource type="PackedScene" uid="uid://cvdfov626xq2h" path="res://scenes/game_manager.tscn" id="1_6qdni"]
+[ext_resource type="PackedScene" uid="uid://c80wvnj0qxab2" path="res://scenes/player.tscn" id="1_710xm"]
+[ext_resource type="PackedScene" uid="uid://bnjh2l44fv0v8" path="res://scenes/foreground.tscn" id="1_uw5oc"]
+[ext_resource type="Script" path="res://scripts/l2-manager.gd" id="2_svfpr"]
+[ext_resource type="FontFile" uid="uid://bpgicw30a6jpg" path="res://assets/fonts/PixelOperator8.ttf" id="3_h20mv"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="4_kd218"]
+[ext_resource type="PackedScene" uid="uid://q1cmkx7gk2nx" path="res://scenes/killzone.tscn" id="5_x5qs0"]
+[ext_resource type="PackedScene" uid="uid://c5vpk6laq3n63" path="res://scenes/coin.tscn" id="6_1xpof"]
+[ext_resource type="PackedScene" uid="uid://bcrrmcy8eqha4" path="res://scenes/winzone.tscn" id="9_ybs8l"]
+[ext_resource type="PackedScene" uid="uid://bbs1767hkpmi7" path="res://scenes/end_text.tscn" id="10_1vsri"]
+
+[node name="level two" type="Node2D"]
+
+[node name="game manager" parent="." instance=ExtResource("1_6qdni")]
+unique_name_in_owner = true
+script = ExtResource("2_svfpr")
+
+[node name="killzone" parent="." instance=ExtResource("5_x5qs0")]
+position = Vector2(-36, 87)
+
+[node name="foreground" parent="." instance=ExtResource("1_uw5oc")]
+tile_map_data = PackedByteArray("AAD4/wEAAAACAAEAAAD5/wEAAAACAAEAAAD6/wEAAAACAAEAAAD7/wEAAAACAAEAAAD8/wEAAAACAAEAAAD9/wEAAAACAAEAAAD+/wEAAAACAAEAAAD//wEAAAACAAEAAAAAAAEAAAACAAEAAAABAAEAAAACAAEAAAACAAEAAAACAAEAAAADAAEAAAACAAEAAAAEAAEAAAACAAEAAAAFAAEAAAACAAEAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAD7/wAAAAACAAAAAAD8/wAAAAACAAAAAAD9/wAAAAACAAAAAAD+/wAAAAACAAAAAAD//wAAAAACAAAAAAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAAGAAAAAAACAAAAAAAGAAEAAAACAAEAAAAHAAAAAAACAAAAAAAHAAEAAAACAAEAAAD6/wAAAAACAAAAAAD5/wAAAAACAAAAAAD4/wAAAAACAAAAAAD3/wAAAAACAAAAAAD3/wEAAAACAAEAAAA=")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_710xm")]
+position = Vector2(-129, -13)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(-1, 0)
+zoom = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = 140.0
+offset_top = -106.0
+offset_right = 191.0
+offset_bottom = -95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_h20mv")
+theme_override_font_sizes/font_size = 8
+text = "score: 0"
+script = ExtResource("4_kd218")
+metadata/_edit_use_anchors_ = true
+
+[node name="coins" type="Node" parent="."]
+
+[node name="coin" parent="." instance=ExtResource("6_1xpof")]
+position = Vector2(-8, -8)
+
+[node name="coin2" parent="." instance=ExtResource("6_1xpof")]
+position = Vector2(-48, -8)
+
+[node name="coin3" parent="." instance=ExtResource("6_1xpof")]
+position = Vector2(-29, -8)
+
+[node name="coin4" parent="." instance=ExtResource("6_1xpof")]
+position = Vector2(-67, -8)
+
+[node name="coin5" parent="." instance=ExtResource("6_1xpof")]
+position = Vector2(-93, -8)
+
+[node name="winzone" parent="." instance=ExtResource("9_ybs8l")]
+position = Vector2(100, -32)
+
+[node name="end text" parent="." instance=ExtResource("10_1vsri")]

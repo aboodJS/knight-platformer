@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://c1s76eg23sddo"]
+
+[ext_resource type="PackedScene" uid="uid://c80wvnj0qxab2" path="res://scenes/player.tscn" id="1_x41gk"]
+[ext_resource type="FontFile" uid="uid://bpgicw30a6jpg" path="res://assets/fonts/PixelOperator8.ttf" id="2_10hgu"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="3_8bt16"]
+[ext_resource type="PackedScene" uid="uid://o0yq5qji5d6c" path="res://scenes/platform.tscn" id="4_f5hvd"]
+[ext_resource type="PackedScene" uid="uid://q1cmkx7gk2nx" path="res://scenes/killzone.tscn" id="5_bf5en"]
+[ext_resource type="PackedScene" uid="uid://bcrrmcy8eqha4" path="res://scenes/winzone.tscn" id="6_5ug3f"]
+[ext_resource type="Script" path="res://scripts/winzone-l1.gd" id="7_qx7gx"]
+[ext_resource type="PackedScene" uid="uid://bnjh2l44fv0v8" path="res://scenes/foreground.tscn" id="8_dt4fs"]
+[ext_resource type="PackedScene" uid="uid://c5vpk6laq3n63" path="res://scenes/coin.tscn" id="8_grga3"]
+[ext_resource type="PackedScene" uid="uid://eomca386ioom" path="res://scenes/background.tscn" id="9_gfiou"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="9_n3m6t"]
+[ext_resource type="PackedScene" uid="uid://cvdfov626xq2h" path="res://scenes/game_manager.tscn" id="10_a74r6"]
+[ext_resource type="Script" path="res://scripts/end_text.gd" id="10_jhdin"]
+
+[node name="level one" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_x41gk")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(-100, -3)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(-1, 0)
+zoom = Vector2(3, 3)
+
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = 140.0
+offset_top = -106.0
+offset_right = 191.0
+offset_bottom = -95.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_10hgu")
+theme_override_font_sizes/font_size = 8
+text = "score: 0"
+script = ExtResource("3_8bt16")
+metadata/_edit_use_anchors_ = true
+
+[node name="platforms" type="Node" parent="."]
+
+[node name="AnimatableBody2D" parent="platforms" instance=ExtResource("4_f5hvd")]
+position = Vector2(145, -26)
+
+[node name="AnimatableBody2D2" parent="platforms" instance=ExtResource("4_f5hvd")]
+position = Vector2(145, -64)
+
+[node name="killzone" parent="." instance=ExtResource("5_bf5en")]
+position = Vector2(-9, 83)
+
+[node name="winzone" parent="." instance=ExtResource("6_5ug3f")]
+position = Vector2(-117, -128)
+script = ExtResource("7_qx7gx")
+
+[node name="foreground" parent="." instance=ExtResource("8_dt4fs")]
+
+[node name="background" parent="." instance=ExtResource("9_gfiou")]
+
+[node name="coin" parent="." instance=ExtResource("8_grga3")]
+position = Vector2(-67, 7)
+
+[node name="coin2" parent="." instance=ExtResource("8_grga3")]
+position = Vector2(-25, 7)
+
+[node name="coin3" parent="." instance=ExtResource("8_grga3")]
+position = Vector2(18, 7)
+
+[node name="game manager" parent="." instance=ExtResource("10_a74r6")]
+unique_name_in_owner = true
+script = ExtResource("9_n3m6t")
+
+[node name="end text" type="Label" parent="."]
+offset_left = -132.0
+offset_top = -163.0
+offset_right = -44.0
+offset_bottom = -140.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_10hgu")
+theme_override_font_sizes/font_size = 8
+text = "you dont have enough coins!"
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("10_jhdin")
