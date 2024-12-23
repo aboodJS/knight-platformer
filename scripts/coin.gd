@@ -6,13 +6,14 @@ extends Area2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var coin: Area2D = $"."
-@onready var label: Label = $"../CharacterBody2D/Camera2D/Label"
-@onready var end_text: Label = $"../end text"
+@onready var label: Label = $"../../CharacterBody2D/Camera2D/Label"
+@onready var end_text: Label = $"../../end text"
 
 
 
 
-func _on_body_entered(body: Node2D) -> void:
+
+func _on_body_entered(body: CharacterBody2D) -> void:
 	coin.set_deferred('monitoring', false)
 	animated_sprite_2d.animation = ""
 	collision_shape_2d.disabled = true

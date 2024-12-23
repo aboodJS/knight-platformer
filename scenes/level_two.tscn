@@ -44,19 +44,19 @@ metadata/_edit_use_anchors_ = true
 
 [node name="coins" type="Node" parent="."]
 
-[node name="coin" parent="." instance=ExtResource("6_1xpof")]
+[node name="coin" parent="coins" instance=ExtResource("6_1xpof")]
 position = Vector2(-8, -8)
 
-[node name="coin2" parent="." instance=ExtResource("6_1xpof")]
+[node name="coin2" parent="coins" instance=ExtResource("6_1xpof")]
 position = Vector2(-48, -8)
 
-[node name="coin3" parent="." instance=ExtResource("6_1xpof")]
+[node name="coin3" parent="coins" instance=ExtResource("6_1xpof")]
 position = Vector2(-29, -8)
 
-[node name="coin4" parent="." instance=ExtResource("6_1xpof")]
+[node name="coin4" parent="coins" instance=ExtResource("6_1xpof")]
 position = Vector2(-67, -8)
 
-[node name="coin5" parent="." instance=ExtResource("6_1xpof")]
+[node name="coin5" parent="coins" instance=ExtResource("6_1xpof")]
 position = Vector2(-93, -8)
 
 [node name="winzone" parent="." instance=ExtResource("9_ybs8l")]

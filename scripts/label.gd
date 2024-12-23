@@ -5,6 +5,6 @@ extends Label
 
 func showScore():
 	if  game_manager.points > 0:
-		label.text = 'score: ' + str(game_manager.points)
+		label.text = 'coins: ' + str(game_manager.points)
 	else:
 		print('no coins?')
