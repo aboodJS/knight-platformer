@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://u4ollihimcrj"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_4r40l"]
+[ext_resource type="Texture2D" uid="uid://7mor4aywiu0n" path="res://assets/sprites/slime_green.png" id="2_deppe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4i76j"]
+size = Vector2(12, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ex05d"]
+atlas = ExtResource("2_deppe")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wg00"]
+atlas = ExtResource("2_deppe")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgbms"]
+atlas = ExtResource("2_deppe")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ackc5"]
+atlas = ExtResource("2_deppe")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3vm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ex05d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wg00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgbms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ackc5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_qxo23"]
+length = 11.0
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_3pccy"]
+length = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2waqc"]
+size = Vector2(14, 12)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_4r40l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_4i76j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_w3vm3")
+autoplay = "default"
+
+[node name="right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right"]
+position = Vector2(0, -5)
+rotation = -1.5708
+shape = SubResource("SeparationRayShape2D_qxo23")
+
+[node name="left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left"]
+position = Vector2(0, -5)
+rotation = 1.5708
+shape = SubResource("SeparationRayShape2D_3pccy")
+
+[node name="death" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="death"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_2waqc")
+
+[connection signal="body_entered" from="right" to="." method="_on_right_body_entered"]
+[connection signal="body_entered" from="left" to="." method="_on_left_body_entered"]
+[connection signal="body_entered" from="death" to="." method="_on_death_body_entered"]
