@@ -43,10 +43,10 @@ animations = [{
 }]
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_qxo23"]
-length = 11.0
+length = 13.0
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_3pccy"]
-length = 11.0
+length = 13.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2waqc"]
 size = Vector2(14, 12)

@@ -5,7 +5,9 @@ const SPEED = 120.0
 
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var player: CharacterBody2D = $"../player"
+@onready var player: CharacterBody2D = %player
+@onready var coin: Area2D = $"../../coins/coin"
+
 
 var direction = 1
 
@@ -20,15 +22,16 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_right_body_entered(body: TileMapLayer) -> void:
-	animated_sprite_2d.flip_h = true
-	direction = -1
+func _on_right_body_entered(body: Node2D) -> void:
+	if  body != player and body != coin:
+		animated_sprite_2d.flip_h = true
+		direction = -1
 
 
-func _on_left_body_entered(body: TileMapLayer) -> void:
-		direction = 1
-		
-		animated_sprite_2d.flip_h = false
+func _on_left_body_entered(body: Node2D) -> void:
+		if  body != player and body != coin:
+			direction = 1
+			animated_sprite_2d.flip_h = false
 		
 
 

@@ -1,11 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://c1s76eg23sddo"]
+[gd_scene load_steps=21 format=4 uid="uid://c1s76eg23sddo"]
 
 [ext_resource type="PackedScene" uid="uid://c80wvnj0qxab2" path="res://scenes/player.tscn" id="1_x41gk"]
 [ext_resource type="FontFile" uid="uid://bpgicw30a6jpg" path="res://assets/fonts/PixelOperator8.ttf" id="2_10hgu"]
 [ext_resource type="Script" path="res://scripts/label.gd" id="3_8bt16"]
 [ext_resource type="PackedScene" uid="uid://o0yq5qji5d6c" path="res://scenes/platform.tscn" id="4_f5hvd"]
+[ext_resource type="Texture2D" uid="uid://c5teb6mdg03ou" path="res://assets/jump.png" id="4_ixnhc"]
 [ext_resource type="PackedScene" uid="uid://q1cmkx7gk2nx" path="res://scenes/killzone.tscn" id="5_bf5en"]
+[ext_resource type="Texture2D" uid="uid://binvjjomt4tf8" path="res://assets/right.png" id="5_wdkn3"]
 [ext_resource type="PackedScene" uid="uid://bcrrmcy8eqha4" path="res://scenes/winzone.tscn" id="6_5ug3f"]
+[ext_resource type="Texture2D" uid="uid://h5o8ag1xem5y" path="res://assets/left.png" id="6_cooib"]
 [ext_resource type="Script" path="res://scripts/winzone-l1.gd" id="7_qx7gx"]
 [ext_resource type="PackedScene" uid="uid://bnjh2l44fv0v8" path="res://scenes/foreground.tscn" id="8_dt4fs"]
 [ext_resource type="PackedScene" uid="uid://c5vpk6laq3n63" path="res://scenes/coin.tscn" id="8_grga3"]
@@ -55,26 +58,48 @@ _data = {
 
 [node name="level one" type="Node2D"]
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_x41gk")]
+[node name="player" parent="." instance=ExtResource("1_x41gk")]
 unique_name_in_owner = true
 z_index = 1
 position = Vector2(-100, -3)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-1, 0)
 zoom = Vector2(3, 3)
 
-[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
-offset_left = 130.0
-offset_top = -100.0
-offset_right = 181.0
-offset_bottom = -89.0
+[node name="Label" type="Label" parent="player/Camera2D"]
+offset_left = 140.0
+offset_top = -106.0
+offset_right = 191.0
+offset_bottom = -95.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_10hgu")
 theme_override_font_sizes/font_size = 8
-text = "coins: 0"
+text = "score: 0"
 script = ExtResource("3_8bt16")
 metadata/_edit_use_anchors_ = true
+
+[node name="jump" type="TouchScreenButton" parent="player/Camera2D"]
+position = Vector2(190, 51)
+rotation = 1.57079
+scale = Vector2(0.267327, 0.262626)
+texture_normal = ExtResource("4_ixnhc")
+action = "jump"
+visibility_mode = 1
+
+[node name="right" type="TouchScreenButton" parent="player/Camera2D"]
+position = Vector2(-159, 51)
+scale = Vector2(0.254717, 0.306931)
+texture_normal = ExtResource("5_wdkn3")
+action = "right"
+visibility_mode = 1
+
+[node name="left" type="TouchScreenButton" parent="player/Camera2D"]
+position = Vector2(-190, 51)
+scale = Vector2(0.283019, 0.306931)
+texture_normal = ExtResource("6_cooib")
+action = "left"
+visibility_mode = 1
 
 [node name="platforms" type="Node" parent="."]
 
@@ -198,3 +223,15 @@ position = Vector2(365, -185)
 
 [node name="lava13" parent="lava" instance=ExtResource("14_mnpuf")]
 position = Vector2(381, -185)
+
+[node name="hint" type="Label" parent="."]
+offset_left = -137.0
+offset_top = -60.0
+offset_right = 31.0
+offset_bottom = -26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_10hgu")
+theme_override_font_sizes/font_size = 8
+text = "collect all 12 coins in each level and reach the end"
+horizontal_alignment = 1
+autowrap_mode = 3
